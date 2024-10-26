@@ -5,21 +5,21 @@ $(document).ready(function () {
     $('#start').on('mouseenter', function () {
         gameStarted = true;
         gameLost = false;
-        $('#status').text("Game Started");
+        startGame();
     });
 
     $('.boundary').on('mouseenter', function () {
         if (gameStarted === true) {
             gameLost = true;
             gameStarted = false;
-            $('#status').text("Game Lost");
+            lostGame();
         }
     });
 
     $('#end').on('mouseenter', function () {
         if (gameStarted === true && gameLost === false) {
             gameStarted = false;
-            $('#status').text("Congratulations!");
+            completeGame();
         }
     });
 });
