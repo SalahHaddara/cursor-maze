@@ -1,24 +1,23 @@
 $(document).ready(function () {
-    let gameStarted = false;
-    let gameLost = false;
+    var gameInProgress = false;
 
     $('#start').on('mouseenter', function () {
-        gameStarted = true;
-        gameLost = false;
-        startGame();
+        if (!gameInProgress) {
+            gameInProgress = true;
+            startGame();
+        }
     });
 
     $('.boundary').on('mouseenter', function () {
-        if (gameStarted === true) {
-            gameLost = true;
-            gameStarted = false;
+        if (gameInProgress) {
+            gameInProgress = false;
             lostGame();
         }
     });
 
     $('#end').on('mouseenter', function () {
-        if (gameStarted === true && gameLost === false) {
-            gameStarted = false;
+        if (gameInProgress) {
+            gameInProgress = false;
             completeGame();
         }
     });
